@@ -445,9 +445,14 @@ public class RegistryProtocol implements Protocol {
         return key;
     }
 
+    /*
+        url: registry://localhost:2181/org.apache.dubbo.registry.RegistryService?application=hello-world-consumer&client=curator&dubbo=2.0.2&pid=15112&qos.accept.foreign.ip=false&qos.enable=true&qos.port=33333&registry=zookeeper&release=3.0.1&timestamp=1628669813354
+        type: interface com.jiangzh.course.dubbo.service.HelloServiceAPI
+     */
     @Override
     @SuppressWarnings("unchecked")
     public <T> Invoker<T> refer(Class<T> type, URL url) throws RpcException {
+        // zookeeper://localhost:2181/org.apache.dubbo.registry.RegistryService?application=hello-world-consumer&client=curator&dubbo=2.0.2&pid=15112&qos.accept.foreign.ip=false&qos.enable=true&qos.port=33333&release=3.0.1&timestamp=1628669813354
         url = getRegistryUrl(url);
         Registry registry = registryFactory.getRegistry(url);
         if (RegistryService.class.equals(type)) {

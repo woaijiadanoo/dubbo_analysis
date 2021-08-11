@@ -85,12 +85,15 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        // 当前ServiceBean： <dubbo:service ref="com.jiangzh.course.dubbo.producer.impl.HelloServiceImpl@31ff6309" id="producerService" />
         if (StringUtils.isEmpty(getPath())) {
             if (StringUtils.isNotEmpty(getInterface())) {
+                // 将com.jiangzh.course.dubbo.service.HelloServiceAPI设置为path
                 setPath(getInterface());
             }
         }
         //register service bean and set bootstrap
+        // 创建DubboBootap install
         DubboBootstrap.getInstance().service(this);
     }
 
